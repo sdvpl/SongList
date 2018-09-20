@@ -50,7 +50,7 @@ namespace SongList
                 var Artistrequest = (HttpWebRequest)WebRequest.Create("https://musicbrainz.org/ws/2/artist/?query=" + ArtistName);
                 Artistrequest.Method = "GET";
                 Artistrequest.UserAgent = "DesktopApp1/1.1.1 ( sdvpl2011@gmail.com )";
-                Artistrequest.Credentials = new NetworkCredential("sdvpl2011", "surfacing");
+                Artistrequest.Credentials = new NetworkCredential("sdvpl2011", "musicbrainz");
                 var Artistresponse = (HttpWebResponse)Artistrequest.GetResponse();
                 string ArtistID = "";
                 string name = "";
@@ -258,7 +258,7 @@ namespace SongList
 
             Trackrequest.Method = "GET";
             Trackrequest.UserAgent = "DesktopApp1/1.1.1 ( sdvpl2011@gmail.com )";
-            Trackrequest.Credentials = new NetworkCredential("sdvpl2011", "surfacing");
+            Trackrequest.Credentials = new NetworkCredential("sdvpl2011", "musicbrainz");
             var Trackresponse = (HttpWebResponse)Trackrequest.GetResponse();
             string artname = artistname;
             string Albumname = aname;
@@ -298,7 +298,7 @@ namespace SongList
 
             Trackrequest.Method = "GET";
             Trackrequest.UserAgent = "DesktopApp1/1.1.1 ( sdvpl2011@gmail.com )";
-            Trackrequest.Credentials = new NetworkCredential("sdvpl2011", "surfacing");
+            Trackrequest.Credentials = new NetworkCredential("sdvpl2011", "musicbrainz");
             var Trackresponse = (HttpWebResponse)Trackrequest.GetResponse();
             string artistname = artname;
             string Albumname = aname;
