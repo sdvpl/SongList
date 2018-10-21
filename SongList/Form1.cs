@@ -33,11 +33,12 @@ namespace SongList
         {
             TextInfo TInfo = new CultureInfo("en-US", false).TextInfo;
             String text = TInfo.ToTitleCase(ArtistSearchBox.Text);
+            text = text.Trim();
             ArtistSearch(text);
             ShowAlbumSearch();
         }
 
-        private void ArtistSearch(String ArtistName)
+        public void ArtistSearch(String ArtistName)
         {
             ArtstAlbumSearchListView.Items.Clear();
             ArtstAlbumSearchListView.ListViewItemSorter = null;
@@ -93,6 +94,11 @@ namespace SongList
                 if (String.IsNullOrEmpty(ArtistID))
                 {
                     Console.WriteLine("ArtistID is empty");
+                    ListViewItem NoArtist;
+                    string[] row1 = { "Could not find Artist/Band, Try Again" };
+                    NoArtist = new ListViewItem(row1);
+                    ArtstAlbumSearchListView.Items.Add(NoArtist);
+
                     //AlbumSearch(ArtistID);
                 }
                 else
