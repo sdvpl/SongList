@@ -300,7 +300,9 @@ namespace SongList
 
         private void TrackSearch(string artname, string aname, string rdate, string aid)
         {
-            var Trackrequest = (HttpWebRequest)WebRequest.Create("http://musicbrainz.org/ws/1/release/" + aid + "?type=xml&inc=tracks");
+            //var Trackrequest = (HttpWebRequest)WebRequest.Create("http://musicbrainz.org/ws/1/release/" + aid + "?type=xml&inc=tracks");
+            var Trackrequest = (HttpWebRequest)WebRequest.Create("http://musicbrainz.org/ws/2/recording/?release=" + aid);
+            Console.WriteLine("------------------:" + aid.ToString());
 
             Trackrequest.Method = "GET";
             Trackrequest.UserAgent = "DesktopApp1/1.1.1 ( sdvpl2011@gmail.com )";
@@ -324,14 +326,15 @@ namespace SongList
                     elementName = reader.Name;
                     switch (elementName)
                     {
-                        case "track-list":
+                        case "recording-list":
                             {
                                 var subReader = reader.ReadSubtree();
-                                while (subReader.ReadToFollowing("track"))
+                                while (subReader.ReadToFollowing("recording"))
                                 {
                                     if (subReader.ReadToFollowing("title"))
                                     {
                                         trackname = reader.ReadElementContentAsString();
+                                        Console.WriteLine(trackname);
                                         string[] row = { artistname, Albumname, trackname };
                                         listViewItem = new ListViewItem(row);
                                         AlbumTrackListView.Items.Add(listViewItem);
